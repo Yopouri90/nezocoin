@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NezoCoin — NZ</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo"><span class="logo-n">N</span>ezoCoin</div>
+  <div class="nav-center">
+    NZ :&nbsp;<span id="nav-price">€0.001000</span>
+    <span class="ticker-change" id="nav-change">+0.00%</span>
+  </div>
+  <div class="nav-wallet">
+    <div class="wallet-info">
+      <span class="wallet-label">Wallet</span>
+      <span class="wallet-balance"><span id="wallet-nz">0.0000</span> NZ</span>
+      <span class="wallet-eur">≈ €<span id="wallet-eur">0.0000</span></span>
+    </div>
+    <div class="wallet-eur-bal">€<span id="wallet-eur-bal">10.00</span></div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-label">Introducing</p>
+      <h1 class="hero-title">Le NezoCoin n'est pas<br>qu'un simple billet.</h1>
+      <p class="hero-sub">La monnaie manuscrite qui fait rire — et qui monte.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hstat-val" id="hero-mcap">€1.00</span>
+          <span class="hstat-label">Market Cap</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hstat-val" id="hero-holders">1</span>
+          <span class="hstat-label">Holders</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hstat-val" id="hero-supply">1 000</span>
+          <span class="hstat-label">Supply</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#trading" class="btn-primary">Buy NZ</a>
+        <a href="#factory" class="btn-secondary">The Mint</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div id="hero-coin-container"></div>
+      <div class="hero-coin-label">1 NZ = €<span id="hero-price">0.001000</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FACTORY ══════════════════ -->
+<section id="factory">
+  <div class="section-header">
+    <h2>The NezoCoin Mint</h2>
+    <p>Toutes les 2 minutes, un nouveau NezoCoin entre en circulation.</p>
+  </div>
+  <div class="factory-wrapper">
+    <div class="factory-svg-container">
+      <svg id="factory-svg" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="coin-stage" id="coin-stage"></div>
+    </div>
+    <div class="factory-info">
+      <div class="mint-counter">
+        <div class="mint-next">
+          <span class="mint-label">Prochain coin dans</span>
+          <span class="mint-timer" id="mint-timer">02:00</span>
+        </div>
+        <div class="mint-total">
+          <span class="mint-label">Total minté</span>
+          <span class="mint-total-val" id="mint-total">1 000</span>
+        </div>
+      </div>
+      <div class="mint-log" id="mint-log">
+        <div class="mint-log-title">Mint Log</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ TRADING ══════════════════ -->
+<section id="trading">
+  <div class="trading-header">
+    <div class="coin-identity">
+      <div class="coin-avatar">N</div>
+      <div class="coin-meta">
+        <h2>NezoCoin <span class="coin-ticker">NZ</span></h2>
+        <p class="coin-desc">NezoCoin is a joke that became a whole operation. Born on graph paper, raised on vibes. The most handcrafted coin in existence.</p>
+      </div>
+    </div>
+    <div class="trading-links">
+      <span class="tag">meme</span>
+      <span class="tag">handmade</span>
+      <span class="tag">NZ</span>
+      <span class="tag">graphpaper</span>
+    </div>
+  </div>
+
+  <div class="trading-layout">
+
+    <!-- LEFT : Chart + feed -->
+    <div class="trading-left">
+      <div class="chart-controls">
+        <button class="chart-btn active" data-range="1h">1H</button>
+        <button class="chart-btn" data-range="6h">6H</button>
+        <button class="chart-btn" data-range="24h">24H</button>
+        <button class="chart-btn" data-range="all">ALL</button>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="price-chart"></canvas>
+      </div>
+      <div class="chart-stats-row">
+        <div class="cstat"><span class="cstat-label">Price</span><span class="cstat-val" id="stat-price">€0.001000</span></div>
+        <div class="cstat"><span class="cstat-label">24h</span><span class="cstat-val" id="stat-change">+0.00%</span></div>
+        <div class="cstat"><span class="cstat-label">Market Cap</span><span class="cstat-val" id="stat-mcap">€1.00</span></div>
+        <div class="cstat"><span class="cstat-label">Volume 24h</span><span class="cstat-val" id="stat-vol">€0.00</span></div>
+        <div class="cstat"><span class="cstat-label">Liquidité</span><span class="cstat-val" id="stat-liq">€10.00</span></div>
+      </div>
+      <div class="tx-feed">
+        <div class="tx-feed-title">Transactions récentes</div>
+        <div class="tx-header-row">
+          <span>Type</span><span>EUR</span><span>NZ</span><span>Heure</span><span>Adresse</span>
+        </div>
+        <div id="tx-list"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT : Trade + stats -->
+    <div class="trading-right">
+
+      <!-- Buy / Sell panel -->
+      <div class="trade-panel">
+        <div class="trade-tabs">
+          <button class="trade-tab active buy-active" id="tab-buy" onclick="setTradeMode('buy')">Buy</button>
+          <button class="trade-tab" id="tab-sell" onclick="setTradeMode('sell')">Sell</button>
+        </div>
+        <div class="trade-body">
+          <div class="trade-balance">
+            Balance : <span id="trade-balance-display">10.00</span>&nbsp;<span id="trade-balance-unit">€</span>
+          </div>
+          <div class="trade-input-row">
+            <input type="number" id="trade-amount" placeholder="0.00" min="0" step="any">
+            <span class="trade-input-unit" id="trade-unit">€</span>
+          </div>
+          <div class="trade-quick">
+            <button onclick="setQuick(0.25)">25%</button>
+            <button onclick="setQuick(0.5)">50%</button>
+            <button onclick="setQuick(0.75)">75%</button>
+            <button onclick="setQuick(1)">MAX</button>
+          </div>
+          <div class="trade-preview">
+            Vous recevez : <strong><span id="preview-amount">0.000000</span> <span id="preview-unit">NZ</span></strong>
+          </div>
+          <button class="trade-execute" id="trade-btn" onclick="executeTrade()">Buy NZ</button>
+        </div>
+      </div>
+	  
+	  <!-- Position tracker -->
+<div class="position-panel" id="position-panel" style="display:none">
+  <div class="position-title">Ma Position</div>
+  <div class="position-row">
+    <span>Investi</span>
+    <span id="pos-invested">€0.00</span>
+  </div>
+  <div class="position-row">
+    <span>Valeur actuelle</span>
+    <span id="pos-current">€0.00</span>
+  </div>
+  <div class="position-row">
+    <span>Prix d'entrée moy.</span>
+    <span id="pos-entry">€0.000000</span>
+  </div>
+  <div class="position-row">
+    <span>NZ détenus</span>
+    <span id="pos-nz">0.0000</span>
+  </div>
+  <div class="position-pnl" id="pos-pnl">+€0.00 (0.00%)</div>
+</div>
+
+      <!-- Market stats -->
+      <div class="market-stats-panel">
+        <div class="mstat-row"><span>Holders</span><span id="ms-holders">1</span></div>
+        <div class="mstat-row"><span>Bundlers</span><span id="ms-bundlers">0</span></div>
+        <div class="mstat-row"><span>Snipers</span><span id="ms-snipers">2</span></div>
+        <div class="mstat-row"><span>Total Supply</span><span id="ms-supply">1 000 NZ</span></div>
+      </div>
+
+      <!-- Top holders -->
+      <div class="holders-panel">
+        <div class="holders-title">Top Holders</div>
+        <div id="holders-list"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ANNOUNCEMENT ══════════════════ -->
+<div id="announcement-banner" class="hidden">
+  <span id="announcement-text"></span>
+  <button onclick="this.parentElement.classList.add('hidden')">✕</button>
+</div>
+
+<!-- ══════════════════ ADMIN TRIGGER ══════════════════ -->
+<div id="admin-trigger">
+  <button onclick="openAdmin()" title="Admin">⚙</button>
+</div>
+
+<!-- ══════════════════ ADMIN OVERLAY ══════════════════ -->
+<div id="admin-overlay" class="hidden">
+  <div id="admin-panel">
+    <div class="admin-header">
+      <h3>🔐 Admin Panel</h3>
+      <button onclick="closeAdmin()">✕</button>
+    </div>
+
+    <!-- Login -->
+    <div id="admin-login" class="admin-section">
+      <input type="password" id="admin-pwd" placeholder="Mot de passe admin">
+      <button onclick="adminLogin()">Accès</button>
+      <p id="admin-error" class="hidden" style="color:var(--red);font-size:12px;">Mot de passe incorrect.</p>
+    </div>
+
+    <!-- Controls -->
+    <div id="admin-controls" class="hidden admin-section">
+      <div class="admin-title">Contrôles Admin</div>
+
+      <div class="admin-group">
+        <label>📢 Annonce</label>
+        <div>
+          <input type="text" id="admin-announcement" placeholder="Message...">
+          <button onclick="adminAnnounce()">Envoyer</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>💧 Ajouter Liquidité (€)</label>
+        <div>
+          <input type="number" id="admin-add-liq" placeholder="0.00">
+          <button onclick="adminAddLiq()">+</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>📈 Ajouter Volume (€)</label>
+        <div>
+          <input type="number" id="admin-add-vol" placeholder="0.00">
+          <button onclick="adminAddVol()">+</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>👥 Ajouter Holders</label>
+        <div>
+          <input type="number" id="admin-add-holders" placeholder="0">
+          <button onclick="adminAddHolders()">+</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>🤖 Ajouter Bundlers</label>
+        <div>
+          <input type="number" id="admin-add-bundlers" placeholder="0">
+          <button onclick="adminAddBundlers()">+</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>💰 Set Market Cap (€)</label>
+        <div>
+          <input type="number" id="admin-set-mcap" placeholder="0.00">
+          <button onclick="adminSetMcap()">Set</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>🏷 Set Prix (€)</label>
+        <div>
+          <input type="number" id="admin-set-price" placeholder="0.00000">
+          <button onclick="adminSetPrice()">Set</button>
+        </div>
+      </div>
+
+      <div class="admin-group">
+        <label>💀 Retirer toute la liquidité</label>
+        <button onclick="adminRugPull()" class="admin-danger">💀 RUG PULL</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/config.js"></script>
+<script src="js/wallet.js"></script>
+<script src="js/market.js"></script>
+<script src="js/chart-render.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.1.1/dist/chartjs-chart-financial.min.js"></script>
+<script src="js/coin-svg.js"></script>
+<script src="js/factory.js"></script>
+<script src="js/bots.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
